@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"net/http"
@@ -9,12 +10,16 @@ import (
 	"github.com/zenazn/goji/web"
 )
 
+type chatHistory struct {
+	History []chatMessage
+}
+
 type chatMessage struct { // A message structure to put in the chat buffer
 	User    string
 	Message string
 }
 
-var chatBuffer []chatMessage // The chat buffer
+var chatBuffer chatHistory // The chat buffer
 
 func health(c web.C, w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "%s\n", "Uh, we had a slight weapons malfunction, but uh... everything's perfectly all right now. We're fine. We're all fine here now, thank you. How are you?")
@@ -25,10 +30,17 @@ func postMessage(c web.C, w http.ResponseWriter, r *http.Request) {
 	name := r.URL.Query().Get("name")
 	line := r.URL.Query().Get("line")
 
-	message := chatMessage{User: name, Message: line}
-	chatBuffer = append(chatBuffer, message)
+	if name != "" && line != "" {
+		message := chatMessage{User: name, Message: line}
+		chatBuffer.History = append(chatBuffer.History, message)
+	}
 
-	fmt.Fprintf(w, "%s\n", chatBuffer)
+	history, err := json.Marshal(chatBuffer.History)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Fprintf(w, "%s\n", history)
 }
 
 func main() {
