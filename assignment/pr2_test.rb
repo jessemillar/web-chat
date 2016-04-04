@@ -21,7 +21,7 @@ def handleRequest( socket, i )
 
 	puts "About to read"
 	#Simulate a read of the rest of the http request
-	socket.read
+	# socket.read
 
 	response = "Hello World!\n" + i.to_s
 
@@ -91,11 +91,11 @@ if ARGV.length > 0
 	end
 	host = ARGV[0]
 	#start client 1 request
-	s = TCPSocket::new(host, 9020) 
+	s = TCPSocket::new(host, 9020)
 	s.write("GET /index1.html HTTP/1.0\r\n")
 
 	#start and complete client 2 reuqest
-	s2 = TCPSocket::new(host, 9020) 
+	s2 = TCPSocket::new(host, 9020)
 	s2.write("GET /index2.html HTTP/1.0\r\n")
 	s2.write("\r\n")
 	s2.flush
