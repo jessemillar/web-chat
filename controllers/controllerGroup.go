@@ -1,6 +1,6 @@
 package controllers
 
-import "github.com/jessemillar/rytsar-server/accessors"
+import "github.com/jessemillar/web-chat/accessors"
 
 // ControllerGroup holds all config information for the controllers
 type ControllerGroup struct {

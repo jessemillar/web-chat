@@ -1,28 +1,25 @@
 package main
 
 import (
-	"os"
+	"flag"
+	"fmt"
+	"net/http"
 
-	"github.com/jessemillar/rytsar-server/accessors"
-	"github.com/jessemillar/rytsar-server/controllers"
 	"github.com/zenazn/goji"
+	"github.com/zenazn/goji/web"
 )
 
+func health(c web.C, w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "%s\n", "Uh, we had a slight weapons malfunction, but uh... everything's perfectly all right now. We're fine. We're all fine here now, thank you. How are you?")
+}
+
+func postChat(c web.C, w http.ResponseWriter, r *http.Request) {
+	println("Stuff")
+}
+
 func main() {
-	// Construct the dsn used for the database
-	dsn := os.Getenv("RYTSAR_DB_USER") + ":" + os.Getenv("RYTSAR_DB_PASS") + "@tcp(" + os.Getenv("RYTSAR_DB_HOST") + ":" + os.Getenv("RYTSAR_DB_PORT") + ")/" + os.Getenv("RYTSAR_DB_NAME")
-
-	// Construct a new AccessorGroup and connects it to the database
-	ag := new(accessors.AccessorGroup)
-	ag.ConnectToDB("mysql", dsn)
-
-	// Constructs a new ControllerGroup and gives it the AccessorGroup
-	cg := new(controllers.ControllerGroup)
-	cg.Accessors = ag
-
-	goji.Get("/health", cg.Health) // Service health
-	goji.Get("/database/:latitude/:longitude/:radius", cg.DumpDatabase)
-	goji.Get("/count/:latitude/:longitude/:radius", cg.CountNearbyEnemies)
-	goji.Delete("/delete/:id", cg.DeleteEnemy)
+	goji.Get("/health", health) // Service health
+	goji.Post("/chat ?name=<name>&line=<chat line>", postChat)
+	flag.Set("bind", ":9200")
 	goji.Serve()
 }
