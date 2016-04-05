@@ -11,7 +11,7 @@ function populateChat() {
             data = JSON.parse(data);
             $("#chatbox").html("");
             for (var message in data) { //Insert chat log into the #chatbox div
-                $("#chatbox").append(data[message].User + " says: " + data[message].Message + "<br>");
+                $("#chatbox").append("<b>" + data[message].User + "</b>: " + data[message].Message + "<br>");
             }
         }
     });
