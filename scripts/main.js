@@ -7,10 +7,10 @@ function populateChat() {
         url: 'http://woodsman.jessemillar.com:9020/chat',
         datatype: 'application/json',
         success: function(data) {
-            var i = 0;
+            console.log(data);
             $("#chatbox").html("");
-            for (var i in data) { //Insert chat log into the #chatbox div
-                $("#chatbox").append(data[i].User + " says: " + data[i].Message + "<br>");
+            for (var message in data) { //Insert chat log into the #chatbox div
+                $("#chatbox").append(data[message].User + " says: " + data[message].Message + "<br>");
             }
         }
     });
