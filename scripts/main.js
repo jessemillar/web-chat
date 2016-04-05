@@ -17,4 +17,15 @@ function populateChat() {
     });
 }
 
+$('#send_chat').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+        url:'server.go',
+        type:'GET',
+        success:function(){
+            $('#usrmsg').val('');
+        }
+    });
+});
+
 var interval = setInterval(populateChat, 1000);
