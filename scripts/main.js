@@ -8,6 +8,7 @@ function populateChat() {
         url: 'http://woodsman.jessemillar.com:9020/chat',
         datatype: 'application/json',
         success: function(data) {
+            data = JSON.parse(data);
             console.log(data);
             $("#chatbox").html("");
             for (var message in data) { //Insert chat log into the #chatbox div
