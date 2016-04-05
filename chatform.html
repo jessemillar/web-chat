@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en-US">
-<link rel="stylesheet" type="text/css" href="styles\main.css">
 
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="scripts\main.js"></script>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="scripts/main.js"></script>
+</head>
 
-<h1>Welcome to the chatroom</h1>
+<body>
+    <h1>Welcome to the chatroom</h1>
 
-<div id="wrapper">
-    <div id="chatbox"></div>
+    <div id="wrapper">
+        <div id="chatbox"></div>
 
-    <form action="http://woodsman.jessemillar.com:9020" method="get">
-    	<input name="username" type="text" id="username" size="35" placeholder="Name"/>
-        <input name="usermsg" type="text" id="usermsg" size="63" placeholder="Comment"/>
-        <input name="submitbtn" type="submit"  id="submitbtn" value="Send" />
-    </form>
-</div>
+        <form action="http://woodsman.jessemillar.com:9020/chat" method="get">
+            <input name="username" type="text" id="username" size="35" placeholder="Name" />
+            <input name="usermsg" type="text" id="usermsg" size="63" placeholder="Comment" />
+            <input name="submitbtn" type="submit" id="submitbtn" value="Send" />
+        </form>
+    </div>
 
-Is a man not entitled to the sweat of his brow?
-<a href="files\image.jpg">An Inconspicuous Hyperlink</a>
+    Is a man not entitled to the sweat of his brow?
+    <a href="files/image.jpg">An Inconspicuous Hyperlink</a>
+</body>
