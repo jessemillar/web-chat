@@ -22,6 +22,7 @@ type chatMessage struct { // A message structure to put in the chat buffer
 var chatBuffer chatHistory // The chat buffer
 
 func health(c web.C, w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	fmt.Fprintf(w, "%s\n", "Uh, we had a slight weapons malfunction, but uh... everything's perfectly all right now. We're fine. We're all fine here now, thank you. How are you?")
 }
 
@@ -40,6 +41,7 @@ func postMessage(c web.C, w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	fmt.Fprintf(w, "%s\n", history)
 }
 
