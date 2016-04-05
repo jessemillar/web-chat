@@ -3,6 +3,7 @@ $(document).ready(function() {
 });
 
 function populateChat() {
+    console.log("Populating chat");
     $.ajax({
         url: 'http://woodsman.jessemillar.com:9020/chat',
         datatype: 'application/json',
