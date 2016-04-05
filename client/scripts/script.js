@@ -4,7 +4,7 @@ $(document).ready(function () {
 
 function populateChat () {
   $.ajax({
-    url: 'data.json',
+    url: 'files\\data.json',
     datatype: 'application/json',
     success: function (data) {
       var i = 0;
