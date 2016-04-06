@@ -46,8 +46,9 @@ func postMessage(c web.C, w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	goji.Get("/health", health)    // Service health
-	goji.Get("/chat", postMessage) // This hurts me because this is definitely not how a RESTful endpoint should work but the project spec demanded it
+	goji.Get("/health", health)     // Service health
+	goji.Get("/chat", postMessage)  // This hurts me because this is definitely not how a RESTful endpoint should work but the project spec demanded it
+	goji.Post("/chat", postMessage) // This hurts me because this is rendundant but #specs
 	goji.Handle("/*", http.FileServer(http.Dir("content")))
 	flag.Set("bind", ":9020") // Set the port that Goji listens on
 	goji.Serve()              // Start listening
