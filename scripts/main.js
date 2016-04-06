@@ -1,5 +1,6 @@
 var idleTime = 0; // Keep track of how long the user has been idle
 var username; // The user's username
+var bufferlength = 0;
 
 $(document).ready(function() {
     askName(); // Ask the user's name
@@ -65,6 +66,7 @@ function populateChat() {
         success: function(data) {
             data = JSON.parse(data); // Parse the JSON into an object
             $(".messages").html(""); // Wipe the current messages
+            var count = 0;
 
             for (var message in data) { // Insert chat log into the #chatbox div
                 if (data[message].User == username) {
@@ -72,11 +74,15 @@ function populateChat() {
                 } else {
                     postMessage(data[message].User, data[message].Message, "left");
                 }
+                count++;
             }
-
-            $(".messages").animate({ // Scroll to the bottom of the chat window
-                scrollTop: $(".messages").prop("scrollHeight")
-            }, 10);
+            
+            if (count != bufferlength) {
+                $(".messages").animate({ // Scroll to the bottom of the chat window
+                    scrollTop: $(".messages").prop("scrollHeight")
+                }, 10);
+            }
+            bufferlength = count;
         }
     });
 }
