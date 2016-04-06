@@ -77,7 +77,7 @@ function populateChat() {
                 count++;
             }
             
-            if (count != bufferlength) {
+            if (count != bufferlength) { // check that a new message was added
                 $(".messages").animate({ // Scroll to the bottom of the chat window
                     scrollTop: $(".messages").prop("scrollHeight")
                 }, 10);
