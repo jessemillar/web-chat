@@ -10,7 +10,7 @@ function populateChat() {
         success: function(data) {
             data = JSON.parse(data);
             $("#chatbox").html("");
-            for (var message in data) { //Insert chat log into the #chatbox div
+            for (var message in data) { // Insert chat log into the #chatbox div
                 $("#chatbox").append("<b>" + data[message].User + "</b>: " + data[message].Message + "<br>");
             }
         }
@@ -20,12 +20,12 @@ function populateChat() {
 $('#send_chat').submit(function(e){
     e.preventDefault();
     $.ajax({
-        url:'server.go',
-        type:'GET',
+        url:'http://woodsman.jessemillar.com:9020/chat',
+        type:'POST',
         success:function(){
-            $('#usrmsg').val('');
+            $('#usrmsg').val(''); // Wipe the input field
         }
     });
 });
 
-var interval = setInterval(populateChat, 1000);
+var interval = setInterval(populateChat, 1000); // Refresh every second
