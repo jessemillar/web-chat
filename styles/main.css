@@ -1,6 +1,6 @@
 body {
     background-color: #edeff2;
-    font-family     : "Calibri", "Roboto", sans-serif;
+    font-family     : 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .chat_window {
@@ -149,12 +149,11 @@ body {
 }
 
 .bottom_wrapper {
-    position        : relative;
+    position        : absolute;
+    bottom          : 0;
     width           : 100%;
     background-color: #fff;
     padding         : 20px;
-    position        : absolute;
-    bottom          : 0;
 }
 
 .bottom_wrapper .message_input_wrapper {
