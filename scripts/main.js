@@ -32,7 +32,6 @@ function askName() {
 }
 
 function populateChat() {
-    console.log("Populating chat");
     $.ajax({
         url: "http://woodsman.jessemillar.com:9020/chat",
         datatype: "application/json",
@@ -80,7 +79,6 @@ function sendMessage() {
         type: "POST",
         url: "http://woodsman.jessemillar.com:9020/chat?name=" + username + "&line=" + $(".message_input").val(),
         success: function() {
-            console.log("Message sent");
             $("#line").val(""); // Wipe the input field
             populateChat(); // Get the chat log now for instant feedback
         }
