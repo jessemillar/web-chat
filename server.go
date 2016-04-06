@@ -26,6 +26,12 @@ func health(c web.C, w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "%s\n", "Uh, we had a slight weapons malfunction, but uh... everything's perfectly all right now. We're fine. We're all fine here now, thank you. How are you?")
 }
 
+func reset(c web.C, w http.ResponseWriter, r *http.Request) {
+	chatBuffer.History = chatBuffer.History[:0]
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	fmt.Fprintf(w, "%s\n", "Chat buffer has been reset")
+}
+
 func postMessage(c web.C, w http.ResponseWriter, r *http.Request) {
 	// Spec-defined query parameters
 	name := r.URL.Query().Get("name")
@@ -47,6 +53,7 @@ func postMessage(c web.C, w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	goji.Get("/health", health)     // Service health
+	goji.Get("/reset", reset)       // Reset the chat buffer
 	goji.Get("/chat", postMessage)  // This hurts me because this is definitely not how a RESTful endpoint should work but the project spec demanded it
 	goji.Post("/chat", postMessage) // This hurts me because this is rendundant but #specs
 	goji.Handle("/*", http.FileServer(http.Dir("content")))
