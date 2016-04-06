@@ -20,7 +20,7 @@ $(document).ready(function() {
 function timerIncrement() { // Keep track of how long the user has been idle
     idleTime = idleTime + 1;
 
-    if (idleTime > 0) { // 30 minutes
+    if (idleTime > 29) { // 30 minutes
         sweetAlert({
             title: "You've been logged out...",
             text: "You were idle for 30 minutes.",
