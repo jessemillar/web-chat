@@ -57,7 +57,7 @@ body {
     list-style: none;
     padding   : 20px 10px 0;
     margin    : 0;
-    height    : 347px;
+    height    : calc(100% - 160px);
     overflow  : scroll;
 }
 
@@ -65,12 +65,10 @@ body {
     clear        : both;
     overflow     : hidden;
     margin-bottom: 20px;
-    opacity      : 0;
 }
 
 .messages .message.left .avatar {
-    background-color: #f5886e;
-    float           : left;
+    float: left;
 }
 
 .messages .message.left .text_wrapper {
@@ -89,8 +87,7 @@ body {
 }
 
 .messages .message.right .avatar {
-    background-color: #fdbf68;
-    float           : right;
+    float: right;
 }
 
 .messages .message.right .text_wrapper {
@@ -110,15 +107,10 @@ body {
     text-align: right;
 }
 
-.messages .message.appeared {
-    opacity: 1;
-}
-
 .messages .message .avatar {
-    width        : 60px;
-    height       : 60px;
-    border-radius: 50%;
-    display      : inline-block;
+    width  : 60px;
+    height : 60px;
+    display: inline-block;
 }
 
 .messages .message .text_wrapper {
@@ -199,8 +191,8 @@ body {
 }
 
 .bottom_wrapper .send_message:hover {
-    color           : #a3d063;
-    background-color: #fff;
+    background-color: #b0bb64;
+    border          : 2px solid #b0bb64;
 }
 
 .bottom_wrapper .send_message .text {

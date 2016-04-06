@@ -10,6 +10,7 @@ function askName() {
         text: "This will be your username.",
         type: "input",
         showCancelButton: false,
+        confirmButtonColor: "#b0c965",
         closeOnConfirm: false,
         inputPlaceholder: "Joseph"
     }, function(inputValue) {
@@ -64,10 +65,6 @@ var Message = function(arg) {
             $message.addClass(_this.message_side).find(".text").html(_this.text);
 
             $(".messages").append($message);
-
-            return setTimeout(function() {
-                return $message.addClass("appeared");
-            }, 0);
         };
     }(this);
 
