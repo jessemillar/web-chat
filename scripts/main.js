@@ -103,10 +103,6 @@ function postMessage(user, text, message_side) {
     });
 
     message.draw();
-
-    return $messages.animate({
-        scrollTop: $messages.prop("scrollHeight")
-    }, 300);
 }
 
 $(".send_message").click(function(e) { // On "send" button click
