@@ -1,8 +1,35 @@
-var username; // The user"s username
+var idleTime = 0; // Keep track of how long the user has been idle
+var username; // The user's username
 
 $(document).ready(function() {
     askName(); // Ask the user's name
+
+    //Increment the idle time counter every minute.
+    var idleInterval = setInterval(timerIncrement, 1000 * 60); // 1 minute
+
+    // Zero the idle timer on mouse movement.
+    $(this).mousemove(function(e) {
+        idleTime = 0;
+    });
+
+    $(this).keypress(function(e) {
+        idleTime = 0;
+    });
 });
+
+function timerIncrement() { // Keep track of how long the user has been idle
+    idleTime = idleTime + 1;
+
+    if (idleTime > 0) { // 30 minutes
+        sweetAlert({
+            title: "You've been logged out...",
+            text: "You were idle for 30 minutes.",
+            type: "error"
+        }, function() {
+            window.location.reload();
+        });
+    }
+}
 
 function askName() {
     swal({
