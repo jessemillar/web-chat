@@ -1,9 +1,7 @@
 var username; // The user"s username
-var interval = setInterval(populateChat, 1000); // Refresh every second
 
 $(document).ready(function() {
-    askName();
-    populateChat(); // Load chat messages on page start
+    askName(); // Ask the user's name
 });
 
 function askName() {
@@ -25,6 +23,8 @@ function askName() {
         }
 
         username = inputValue;
+        populateChat(); // Load chat messages
+        var interval = setInterval(populateChat, 1000); // Refresh every second
         $(".message_input").focus();
         swal.close();
     });
@@ -40,7 +40,11 @@ function populateChat() {
             $(".messages").html(""); // Wipe the current messages
 
             for (var message in data) { // Insert chat log into the #chatbox div
-                postMessage(data[message].User, data[message].Message, "left");
+                if (data[message].User == username) {
+                    postMessage(data[message].User, data[message].Message, "right");
+                } else {
+                    postMessage(data[message].User, data[message].Message, "left");
+                }
             }
 
             $(".messages").animate({ // Scroll to the bottom of the chat window
